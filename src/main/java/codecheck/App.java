@@ -24,9 +24,9 @@ public class App {
 	}
 	
 	private static String encode(String decimalNumber) {
-		int number = Integer.parseInt(decimalNumber);
-		int quotient = number/9;
-		int remainder = number%9;
+		long number = Long.parseLong(decimalNumber);
+		long quotient = number/9;
+		long remainder = number%9;
 		
 		if (quotient == 0) {
 			return toAlphabet(remainder);
@@ -35,38 +35,28 @@ public class App {
 		return encode(String.valueOf(quotient)) + toAlphabet(remainder);
 	}
 	
-	private static String toAlphabet(int number) {
+	private static String toAlphabet(long number) {
 		String alphabet;
 		
-		switch (number) {
-		case 0:
+		if (number == 0) {
 			alphabet = "A";
-			break;
-		case 1:
+		} else if (number == 1) {
 			alphabet = "B";
-			break;
-		case 2:
+		} else if (number == 2) {
 			alphabet = "C";
-			break;
-		case 3:
+		} else if (number == 3) {
 			alphabet = "D";
-			break;
-		case 4:
+		} else if (number == 4) {
 			alphabet = "E";
-			break;
-		case 5:
-			alphabet = "F";
-			break;
-		case 6:
+		} else if (number == 5) {
+			alphabet = "F"; 
+		} else if (number == 6) {
 			alphabet = "G";
-			break;
-		case 7:
+		} else if (number == 7) {
 			alphabet = "H";
-			break;
-		case 8:
+		} else if (number == 8) {
 			alphabet = "I";
-			break;
-		default:
+		} else {
 			alphabet = "";
 		}
 		
@@ -74,19 +64,19 @@ public class App {
 		
 	}
 	
-	private static int decode(String alphabetNumber, int square) {
+	private static long decode(String alphabetNumber, int square) {
 		if (alphabetNumber.length() == 1) {
-			return toNumber(alphabetNumber)*(int)Math.pow(9, square);
+			return toNumber(alphabetNumber)*(long)Math.pow(9, square);
 		}
 		
 		String endAlphabet = alphabetNumber.substring(alphabetNumber.length()-1);
 		String otherAlphabet = alphabetNumber.substring(0, alphabetNumber.length()-1);
 		
-		return decode(otherAlphabet, square + 1) + toNumber(endAlphabet)*(int)Math.pow(9, square);
+		return decode(otherAlphabet, square + 1) + toNumber(endAlphabet)*(long)Math.pow(9, square);
 	}
 	
-	private static int toNumber(String alphabet) {
-		int number;
+	private static long toNumber(String alphabet) {
+		long number;
 		
 		if ("A".equals(alphabet)) {
 			number = 0;
