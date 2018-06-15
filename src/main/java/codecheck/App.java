@@ -137,8 +137,8 @@ public class App {
 	}
 	
 	private static String getSum(String alphabetNumber, StringBuilder sum) {
-		BigInteger decimalNumber = new BigInteger(alphabetNumber);
-		BigInteger sumNumber = new BigInteger(sum.toString());
+		BigInteger decimalNumber = decode(alphabetNumber, 0);
+		BigInteger sumNumber = decode(sum.toString(), 0);
 		
 		if (decimalNumber.compareTo(sumNumber) <= 0) {
 			return sum.toString();
